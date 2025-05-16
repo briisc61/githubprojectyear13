@@ -1,8 +1,70 @@
-[gd_scene load_steps=2 format=3 uid="uid://bboxaqkftmjtb"]
+[gd_scene load_steps=8 format=3 uid="uid://bboxaqkftmjtb"]
+
+[ext_resource type="Script" uid="uid://c0xt4vwcktxwr" path="res://chess_piece.gd" id="1_l4lp4"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_l4lp4"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_2sr8o"]
 
-[node name="ChessPiece" type="Node3D"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_l4lp4"]
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+[sub_resource type="Animation" id="Animation_5nxdc"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CollisionShape3D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_l4lp4"]
+resource_name = "jump_scare"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CollisionShape3D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.69, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(-2, 0, 0), Vector3(-2, 0, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_hn8rc"]
+_data = {
+&"RESET": SubResource("Animation_5nxdc"),
+&"jump_scare": SubResource("Animation_l4lp4")
+}
+
+[node name="ChessPiece" type="CharacterBody3D"]
+script = ExtResource("1_l4lp4")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_l4lp4")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CollisionShape3D"]
 mesh = SubResource("CapsuleMesh_2sr8o")
+skeleton = NodePath("../..")
+
+[node name="Area3D" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.86309, 0, 1.85404)
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("BoxShape3D_l4lp4")
+debug_color = Color(0.835294, 0, 0.933333, 1)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_hn8rc")
+}
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]

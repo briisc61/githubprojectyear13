@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://oj3blpxqf1bl"]
+[gd_scene load_steps=7 format=3 uid="uid://oj3blpxqf1bl"]
 
 [ext_resource type="PackedScene" uid="uid://bwggrf7sbmkcv" path="res://addons/PlayerCharacter/PlayerCharacterScene.tscn" id="1_oh4cu"]
 [ext_resource type="Material" uid="uid://cmlreoo2qwhp4" path="res://addons/Arts/StructureMaterial.tres" id="2_etmyc"]
+[ext_resource type="PackedScene" uid="uid://bboxaqkftmjtb" path="res://chess_piece.tscn" id="3_da4oa"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_fjbi6"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -116,3 +117,6 @@ radius = 4.4
 radial_segments = 32
 rings = 12
 material = ExtResource("2_etmyc")
+
+[node name="ChessPiece" parent="." instance=ExtResource("3_da4oa")]
+transform = Transform3D(-0.999485, 0, 0.032091, 0, 1, 0, -0.032091, 0, -0.999485, 3.64514, 1.5, 3.1301)
