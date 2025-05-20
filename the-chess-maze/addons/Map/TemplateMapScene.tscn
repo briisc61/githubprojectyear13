@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://oj3blpxqf1bl"]
+[gd_scene load_steps=9 format=3 uid="uid://oj3blpxqf1bl"]
 
 [ext_resource type="PackedScene" uid="uid://bwggrf7sbmkcv" path="res://addons/PlayerCharacter/PlayerCharacterScene.tscn" id="1_oh4cu"]
 [ext_resource type="Material" uid="uid://cmlreoo2qwhp4" path="res://addons/Arts/StructureMaterial.tres" id="2_etmyc"]
@@ -16,6 +16,10 @@ background_mode = 2
 sky = SubResource("Sky_43bpn")
 tonemap_mode = 2
 glow_enabled = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_da4oa"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_da4oa"]
 
 [node name="TemplateMap" type="Node3D"]
 
@@ -41,7 +45,7 @@ moveRightAction = "move_right"
 [node name="Map" type="Node3D" parent="."]
 
 [node name="CSGBox3D" type="CSGBox3D" parent="Map"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22, 0, -10)
+transform = Transform3D(5.39417, 0, 0, 0, 1, 0, 0, 0, 14.9547, 22, 0, -10)
 use_collision = true
 collision_mask = 2
 size = Vector3(90, 1, 86)
@@ -117,6 +121,21 @@ radius = 4.4
 radial_segments = 32
 rings = 12
 material = ExtResource("2_etmyc")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Map"]
+transform = Transform3D(3.97951, 0, 0, 0, 35.7052, 0, 0, 0, 65.0882, -10.0457, 18.3526, -1.94834)
+mesh = SubResource("BoxMesh_da4oa")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Map/MeshInstance3D"]
+shape = SubResource("BoxShape3D_da4oa")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="Map"]
+transform = Transform3D(-0.213153, 0, -71.27, 0, 35.7052, 0, 3.93703, 0, -3.8586, 27.2358, 18.2524, 31.061)
+mesh = SubResource("BoxMesh_da4oa")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Map"]
+transform = Transform3D(3.97951, 0, 0, 0, 35.7052, 0, 0, 0, 65.0882, 64.7156, 18.026, 2.15699)
+mesh = SubResource("BoxMesh_da4oa")
 
 [node name="ChessPiece" parent="." instance=ExtResource("3_da4oa")]
 transform = Transform3D(-0.999485, 0, 0.032091, 0, 1, 0, -0.032091, 0, -0.999485, 3.64514, 1.5, 3.1301)
