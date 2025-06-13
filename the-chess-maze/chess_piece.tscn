@@ -1,10 +1,9 @@
 [gd_scene load_steps=8 format=3 uid="uid://bboxaqkftmjtb"]
 
 [ext_resource type="Script" uid="uid://c0xt4vwcktxwr" path="res://chess_piece.gd" id="1_l4lp4"]
+[ext_resource type="PackedScene" uid="uid://3fwheme0myld" path="res://assets/A_terrifying_black_qu_0613004506_texture.glb" id="2_5nxdc"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_l4lp4"]
-
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_2sr8o"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_l4lp4"]
 
@@ -50,9 +49,7 @@ script = ExtResource("1_l4lp4")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_l4lp4")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="CollisionShape3D"]
-mesh = SubResource("CapsuleMesh_2sr8o")
-skeleton = NodePath("../..")
+[node name="A_terrifying_black_qu_0613004506_texture" parent="CollisionShape3D" instance=ExtResource("2_5nxdc")]
 
 [node name="Area3D" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.86309, 0, 1.85404)
